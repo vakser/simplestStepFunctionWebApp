@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculate Step Function</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    <h3>Calculate step function</h3>
+    y =
+    <math>
+        <mfenced open="{" close="">
+            <mtable>
+                <mrow><mtext>bx - tg bx, where bx &le; 0.45</mtext></mrow>
+                <mrow><mtext>bx + lg bx, where bx > 0.45</mtext></mrow>
+            </mtable>
+        </mfenced>
+    </math>
+    <br><br>
+    <form th:action="@{/}" method="post" th:object="${function}">
+        <label>
+            for <strong>b</strong>
+            <input type="number" step="0.1" th:field="*{b}" required>
+        </label>
+        <label>
+            over the interval of <strong>x</strong> from
+            <input type="number" step="0.1" th:field="*{initialX}" required>
+        </label>
+        <label>
+            to
+            <input type="number" step="0.1" th:field="*{endX}" required>
+        </label>
+        <label>
+            and <strong>step</strong>
+            <input type="number" step="0.001" th:field="*{step}" required>
+        </label>
+        <br><br>
+        <input type="submit" value="Calculate">
+    </form>
+    <hr/>
+    <a th:if="${function.initialX != null && function.endX != null && function.step != null}" th:href="@{/}" th:onclick="${values != null}">ENTER NEW DATA</a>
+    <h3 th:text="${min}"></h3>
+    <h3 th:text="${max}"></h3>
+    <div th:if="${values != null}">
+        <table>
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+            </tr>
+            <th:block th:each="entry : ${values}">
+                <tr>
+                    <td th:text="${entry.key}"></td>
+                    <td th:text="${entry.value}"></td>
+                </tr>
+            </th:block>
+        </table>
+    </div>
+</body>
+</html>
