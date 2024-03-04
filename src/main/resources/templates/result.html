@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Result</title>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+</head>
+<body>
+    y =
+    <math>
+        <mfenced open="{" close="">
+            <mtable>
+                <mrow><mtext>bx - tg bx, where bx &le; 0.45</mtext></mrow>
+                <mrow><mtext>bx + lg bx, where bx > 0.45</mtext></mrow>
+            </mtable>
+        </mfenced>
+    </math>
+    <h3>
+        For b = <span th:text="${function.b}"></span> over
+        <span th:text="${function.initialX}"></span> &le; x &le; <span th:text="${function.endX}"></span>
+        and step = <span th:text="${function.step}"></span>
+        <br/><br/>
+        <span th:text="${min}"></span>
+        <br/><br/>
+        <span th:text="${max}"></span>
+    </h3>
+    <a href='/'><button>Calculate with other parameters</button></a>
+    <hr>
+    <table>
+        <tr>
+            <th>Index</th>
+            <th>X</th>
+            <th>Y</th>
+        </tr>
+        <th:block th:each="entry : ${values}">
+            <tr>
+                <td th:text="${entry.key}"></td>
+                <td th:text="${entry.value.split(' ')[0]}"></td>
+                <td th:text="${entry.value.split(' ')[1]}"></td>
+            </tr>
+        </th:block>
+    </table>
+</body>
+</html>

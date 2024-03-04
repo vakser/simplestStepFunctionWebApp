@@ -85,7 +85,7 @@ public class FunctionService {
                 maxY = yArray[i];
             }
         }
-        return "Max Y has index " + indexOfMaxValueOfY + " and value " + maxY;
+        return "Max y has index " + indexOfMaxValueOfY + " and value " + maxY;
     }
 
     public String getMinValueOfY(StepFunction function) {
@@ -97,6 +97,6 @@ public class FunctionService {
                 minY = yArray[i];
             }
         }
-        return "Min Y has index " + indexOfMinValueOfY + " and value " + minY;
+        return "Min y has index " + indexOfMinValueOfY + " and value " + minY;
     }
 }
